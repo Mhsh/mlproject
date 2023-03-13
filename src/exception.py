@@ -1,5 +1,7 @@
 import sys
-from logger import logging
+#from logger import logging
+
+
 # Method returns the error message constructred which includes 
 # line number, file name and error message
 # sys is used to get the file name and line number
@@ -23,9 +25,9 @@ class CustomException(Exception):
     def __str__(self):
         return self.error_message
 
-if __name__ == "__main__":
-    try:
-            a = 1/0
-    except Exception as e:
-        logging.info("Divisible by zero error.")
-        raise CustomException(e, sys)
+# if __name__ == "__main__":
+#     try:
+#             a = 1/0
+#     except Exception as e:
+#         logging.info("Divisible by zero error.")
+#         raise CustomException(e, sys)
