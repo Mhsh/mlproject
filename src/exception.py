@@ -5,7 +5,7 @@ import sys
 # Method returns the error message constructred which includes 
 # line number, file name and error message
 # sys is used to get the file name and line number
-def error_message_detail(error, error_detail:sys):
+def error_message(error, error_detail:sys):
     _,_,exc_tb = error_detail.exc_info()
     filename = exc_tb.tb_frame.f_code.co_filename
     error_message = "Error occured in python script name [{0}] line number [{1}] error message [{2}]".format(
@@ -16,10 +16,10 @@ def error_message_detail(error, error_detail:sys):
 # custom exception class that extends Exception.
 # invoke the message detail method to get the error message
 # return the error message from str method to print the exception.
-class CustomException(Exception):
+class ApplicationException(Exception):
     def __init__(self, error_message, error_detail:sys):
         super().__init__(error_message)
-        self.error_message = error_message_detail(error_message, error_detail=error_detail)
+        self.error_message = error_message(error_message, error_detail=error_detail)
         
 
     def __str__(self):
