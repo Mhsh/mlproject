@@ -9,8 +9,9 @@ Contents of settings.yml
 
 dataset:
    /opt/dataset/stud.csv
+
 target_feature:
-   math_score
+   - math_score
 numerical_columns:
    - "writing_score"
    - "reading_score"
