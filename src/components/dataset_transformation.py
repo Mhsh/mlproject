@@ -12,14 +12,14 @@ from src.exception import ApplicationException
 from src.logger import logging
 from src.components.dataset_split import DataSetSplitter
 import os
-
+from src.utils import save_object
 
 class DataSetTransformation:
     def __init__(self,train_path,test_path,target_column_name) -> None:
         self.train_path = train_path
         self.test_path = test_path
         self.target_column_name = target_column_name
-
+        self.pre_processor_path=os.path.join("model_artifacts","pre_processor.pkl")
         
     def transform_data(self, preprocessing_obj: ColumnTransformer):
 
@@ -47,6 +47,10 @@ class DataSetTransformation:
             ]
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
             logging.info("Successfully applied the pipeline.")
+            save_object(
+                file_path=self.pre_processor_path,
+                obj=preprocessing_obj
+            )
             return (
                 train_arr,
                 test_arr

@@ -1,4 +1,5 @@
 import sys
+from dataclasses import dataclass
 
 import numpy as np 
 import pandas as pd
@@ -9,12 +10,18 @@ from sklearn.preprocessing import OneHotEncoder,StandardScaler
 
 from src.exception import ApplicationException
 from src.logger import logging
+from src.utils import save_object
 import os
+
+@dataclass
+class DatasetPipelineConfig:
+    pre_processor_path=os.path.join("model_artifacts","pre_processor.pkl")
 
 class DatasetPipeline:
     def __init__(self,numerical_columns,categorical_columns) -> None:
         self.numerical_columns = numerical_columns
         self.categorical_columns = categorical_columns
+        self.data_set_pipeline_config=DatasetPipelineConfig()
 
     def create_pipeline(self):
         try:
